@@ -1,23 +1,24 @@
 package br.com.rarvelle.rarvelleapi.veiculo;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public class Vehicle {
-    private Long id;
+    private UUID id;
     private String model;
     private String version;
     private BigDecimal price;
     private boolean active;
 
-    public Vehicle(Long id, String model, String version, BigDecimal price, boolean active) {
-        this.id = id;
+    public Vehicle(String model, String version, BigDecimal price, boolean active) {
+        this.id = UUID.randomUUID();
         this.model = model;
         this.version = version;
         this.price = price;
         this.active = active;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
