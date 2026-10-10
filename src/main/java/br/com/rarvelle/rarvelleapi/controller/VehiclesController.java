@@ -2,6 +2,7 @@ package br.com.rarvelle.rarvelleapi.controller;
 
 import br.com.rarvelle.rarvelleapi.service.VehicleService;
 import br.com.rarvelle.rarvelleapi.veiculo.Vehicle;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,10 @@ public class VehiclesController {
     }
 
     @PostMapping
-    public void registerVehicles(@RequestBody Vehicle vehicle) {
+    public ResponseEntity<Vehicle> registerVehicles(@RequestBody Vehicle vehicle) {
         vehicleService.addVehicle(vehicle);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(vehicle);
     }
 
 }
