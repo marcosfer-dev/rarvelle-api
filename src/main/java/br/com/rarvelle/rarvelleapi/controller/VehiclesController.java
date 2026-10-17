@@ -1,7 +1,9 @@
 package br.com.rarvelle.rarvelleapi.controller;
 
+import br.com.rarvelle.rarvelleapi.dto.CreateVehicleRequest;
 import br.com.rarvelle.rarvelleapi.service.VehicleService;
 import br.com.rarvelle.rarvelleapi.veiculo.Vehicle;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +21,13 @@ public class VehiclesController {
     }
 
     @GetMapping
-    public List<Vehicle> listsVehicles() {
+    public List<Vehicle> listsVehiclesActives() {
         return vehicleService.listActiveVehicles();
     }
 
     @PostMapping
-    public ResponseEntity<Vehicle> registerVehicles(@RequestBody Vehicle vehicle) {
-        vehicleService.addVehicle(vehicle);
+    public ResponseEntity<Vehicle> registerVehicles(@RequestBody @Valid CreateVehicleRequest createVehicleRequest) {
+        var vehicle = vehicleService.addVehicle(createVehicleRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(vehicle);
     }

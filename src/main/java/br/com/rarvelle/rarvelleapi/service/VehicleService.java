@@ -1,5 +1,6 @@
 package br.com.rarvelle.rarvelleapi.service;
 
+import br.com.rarvelle.rarvelleapi.dto.CreateVehicleRequest;
 import br.com.rarvelle.rarvelleapi.veiculo.Vehicle;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +11,17 @@ import java.util.List;
 public class VehicleService {
     private List<Vehicle> vehicles = new ArrayList<>();
 
-    public void addVehicle(Vehicle vehicle){
+    public Vehicle addVehicle(CreateVehicleRequest createVehicleRequest){
+        var vehicle = new Vehicle(
+                createVehicleRequest.model(),
+                createVehicleRequest.version(),
+                createVehicleRequest.price(),
+                createVehicleRequest.active()
+        );
+
         vehicles.add(vehicle);
+
+        return vehicle;
     }
 
     public List<Vehicle> listVehicles() {
