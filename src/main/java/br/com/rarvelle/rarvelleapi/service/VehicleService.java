@@ -1,11 +1,13 @@
 package br.com.rarvelle.rarvelleapi.service;
 
 import br.com.rarvelle.rarvelleapi.dto.CreateVehicleRequest;
-import br.com.rarvelle.rarvelleapi.veiculo.Vehicle;
+import br.com.rarvelle.rarvelleapi.vehicle.Vehicle;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class VehicleService {
@@ -38,6 +40,18 @@ public class VehicleService {
         }
 
         return activeVehicles;
+    }
+
+    public Optional<Vehicle> findVehicleById(UUID id) {
+
+        for (Vehicle vehicle : vehicles) {
+            if (id.equals(vehicle.getId())) {
+                return Optional.of(vehicle);
+            }
+        }
+
+        return Optional.empty();
+
     }
 
 }

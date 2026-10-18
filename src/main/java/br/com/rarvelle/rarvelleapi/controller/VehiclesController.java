@@ -2,13 +2,16 @@ package br.com.rarvelle.rarvelleapi.controller;
 
 import br.com.rarvelle.rarvelleapi.dto.CreateVehicleRequest;
 import br.com.rarvelle.rarvelleapi.service.VehicleService;
-import br.com.rarvelle.rarvelleapi.veiculo.Vehicle;
+import br.com.rarvelle.rarvelleapi.vehicle.Vehicle;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/vehicles")
@@ -23,6 +26,14 @@ public class VehiclesController {
     @GetMapping
     public List<Vehicle> listsVehiclesActives() {
         return vehicleService.listActiveVehicles();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Vehicle> listVehicleId(@PathVariable UUID id) {
+        var vehicle = vehicleService.findVehicleById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        return ResponseEntity.ok(vehicle);
     }
 
     @PostMapping

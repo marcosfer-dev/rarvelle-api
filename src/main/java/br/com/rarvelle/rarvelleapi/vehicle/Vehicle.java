@@ -1,4 +1,4 @@
-package br.com.rarvelle.rarvelleapi.veiculo;
+package br.com.rarvelle.rarvelleapi.vehicle;
 
 import java.math.BigDecimal;
 import java.util.UUID;
