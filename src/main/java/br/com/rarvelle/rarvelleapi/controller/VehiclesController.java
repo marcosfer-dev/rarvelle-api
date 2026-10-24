@@ -1,6 +1,7 @@
 package br.com.rarvelle.rarvelleapi.controller;
 
 import br.com.rarvelle.rarvelleapi.dto.CreateVehicleRequest;
+import br.com.rarvelle.rarvelleapi.dto.UpdateVehiclePriceRequest;
 import br.com.rarvelle.rarvelleapi.service.VehicleService;
 import br.com.rarvelle.rarvelleapi.vehicle.Vehicle;
 import jakarta.validation.Valid;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -41,6 +41,13 @@ public class VehiclesController {
         var vehicle = vehicleService.addVehicle(createVehicleRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(vehicle);
+    }
+
+    @PatchMapping("/{id}/price")
+    public ResponseEntity<Void> updateVehiclePrice(@PathVariable UUID id, @RequestBody @Valid UpdateVehiclePriceRequest request) {
+        vehicleService.updateVehiclePrice(id, request);
+
+        return ResponseEntity.noContent().build();
     }
 
 }
