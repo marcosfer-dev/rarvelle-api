@@ -1,11 +1,10 @@
 package br.com.rarvelle.rarvelleapi.service;
 
 import br.com.rarvelle.rarvelleapi.dto.CreateVehicleRequest;
+import br.com.rarvelle.rarvelleapi.dto.UpdateVehicleStatusRequest;
 import br.com.rarvelle.rarvelleapi.dto.UpdateVehiclePriceRequest;
 import br.com.rarvelle.rarvelleapi.vehicle.Vehicle;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -66,6 +65,13 @@ public class VehicleService {
 
         vehicle.setPrice(request.price());
 
+    }
+
+    public void updateVehicleStatus(UUID id, UpdateVehicleStatusRequest request) {
+        var vehicle = findVehicleById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        vehicle.setActive(request.active());
     }
 
 }

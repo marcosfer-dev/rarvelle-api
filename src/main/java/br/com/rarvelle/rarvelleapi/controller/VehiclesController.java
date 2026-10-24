@@ -2,6 +2,7 @@ package br.com.rarvelle.rarvelleapi.controller;
 
 import br.com.rarvelle.rarvelleapi.dto.CreateVehicleRequest;
 import br.com.rarvelle.rarvelleapi.dto.UpdateVehiclePriceRequest;
+import br.com.rarvelle.rarvelleapi.dto.UpdateVehicleStatusRequest;
 import br.com.rarvelle.rarvelleapi.service.VehicleService;
 import br.com.rarvelle.rarvelleapi.vehicle.Vehicle;
 import jakarta.validation.Valid;
@@ -46,6 +47,13 @@ public class VehiclesController {
     @PatchMapping("/{id}/price")
     public ResponseEntity<Void> updateVehiclePrice(@PathVariable UUID id, @RequestBody @Valid UpdateVehiclePriceRequest request) {
         vehicleService.updateVehiclePrice(id, request);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/active")
+    public ResponseEntity<Void> updateVehicleStatus(@PathVariable UUID id, @RequestBody UpdateVehicleStatusRequest request) {
+        vehicleService.updateVehicleStatus(id, request);
 
         return ResponseEntity.noContent().build();
     }
