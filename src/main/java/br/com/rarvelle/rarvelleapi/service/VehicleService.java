@@ -1,6 +1,7 @@
 package br.com.rarvelle.rarvelleapi.service;
 
 import br.com.rarvelle.rarvelleapi.dto.CreateVehicleRequest;
+import br.com.rarvelle.rarvelleapi.dto.UpdateVehicleRequest;
 import br.com.rarvelle.rarvelleapi.dto.UpdateVehicleStatusRequest;
 import br.com.rarvelle.rarvelleapi.dto.UpdateVehiclePriceRequest;
 import br.com.rarvelle.rarvelleapi.vehicle.Vehicle;
@@ -74,4 +75,13 @@ public class VehicleService {
         vehicle.setActive(request.active());
     }
 
+    public void updateVehicle(UUID id, UpdateVehicleRequest request) {
+        var vehicle = findVehicleById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        vehicle.setModel(request.model());
+        vehicle.setVersion(request.version());
+        vehicle.setPrice(request.price());
+        vehicle.setActive(request.active());
+    }
 }
