@@ -8,13 +8,15 @@ public class Vehicle {
     private String model;
     private String version;
     private BigDecimal price;
+    private  VehicleCategory category;
     private boolean active;
 
-    public Vehicle(String model, String version, BigDecimal price, boolean active) {
+    public Vehicle(String model, String version, BigDecimal price, VehicleCategory category,boolean active) {
         this.id = UUID.randomUUID();
         this.model = model;
         this.version = version;
         this.price = price;
+        this.category = category;
         this.active = active;
     }
 
@@ -44,6 +46,14 @@ public class Vehicle {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public VehicleCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(VehicleCategory category) {
+        this.category = category;
     }
 
     public void setPrice(BigDecimal price) {

@@ -1,5 +1,6 @@
 package br.com.rarvelle.rarvelleapi.dto;
 
+import br.com.rarvelle.rarvelleapi.vehicle.VehicleCategory;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
@@ -15,6 +16,8 @@ public record CreateVehicleRequest(
         @NotNull
         @DecimalMin(value = "0.00", inclusive = false)
         BigDecimal price,
+
+        VehicleCategory category,
 
         boolean active
 

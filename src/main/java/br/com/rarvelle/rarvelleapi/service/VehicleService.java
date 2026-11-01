@@ -23,6 +23,7 @@ public class VehicleService {
                 createVehicleRequest.model(),
                 createVehicleRequest.version(),
                 createVehicleRequest.price(),
+                createVehicleRequest.category(),
                 createVehicleRequest.active()
         );
 
