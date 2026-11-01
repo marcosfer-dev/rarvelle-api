@@ -90,6 +90,7 @@ public class VehicleService {
         vehicle.setModel(request.model());
         vehicle.setVersion(request.version());
         vehicle.setPrice(request.price());
+        vehicle.setCategory(request.category());
         vehicle.setActive(request.active());
     }
 }

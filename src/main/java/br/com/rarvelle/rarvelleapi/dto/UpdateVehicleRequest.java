@@ -1,5 +1,6 @@
 package br.com.rarvelle.rarvelleapi.dto;
 
+import br.com.rarvelle.rarvelleapi.vehicle.VehicleCategory;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +18,8 @@ public record UpdateVehicleRequest(
         @DecimalMin(value = "0.00", inclusive = false)
         BigDecimal price,
 
-        @NotNull
+        VehicleCategory category,
+
         boolean active
     ) {
 }
