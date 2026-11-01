@@ -66,4 +66,10 @@ public class VehiclesController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable UUID id) {
+        vehicleService.deleteVehicleById(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }

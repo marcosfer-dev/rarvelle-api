@@ -59,6 +59,13 @@ public class VehicleService {
 
     }
 
+    public void deleteVehicleById(UUID id) {
+        var vehicle = findVehicleById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        vehicles.remove(vehicle);
+    }
+
     public void updateVehiclePrice(UUID id, UpdateVehiclePriceRequest request) {
 
         var vehicle = findVehicleById(id)
