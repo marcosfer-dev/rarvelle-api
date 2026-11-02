@@ -5,6 +5,7 @@ import br.com.rarvelle.rarvelleapi.dto.UpdateVehicleRequest;
 import br.com.rarvelle.rarvelleapi.dto.UpdateVehicleStatusRequest;
 import br.com.rarvelle.rarvelleapi.dto.UpdateVehiclePriceRequest;
 import br.com.rarvelle.rarvelleapi.vehicle.Vehicle;
+import br.com.rarvelle.rarvelleapi.vehicle.VehicleCategory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -46,6 +47,18 @@ public class VehicleService {
         }
 
         return activeVehicles;
+    }
+
+    public List<Vehicle> listActiveVehiclesByCategory(VehicleCategory category) {
+        List<Vehicle> filteredVehicles = new ArrayList<>();
+
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.isActive() && vehicle.getCategory() == category) {
+                filteredVehicles.add(vehicle);
+            }
+        }
+
+        return filteredVehicles;
     }
 
     public Optional<Vehicle> findVehicleById(UUID id) {

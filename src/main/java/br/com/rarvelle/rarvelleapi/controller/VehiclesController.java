@@ -6,6 +6,7 @@ import br.com.rarvelle.rarvelleapi.dto.UpdateVehiclePriceRequest;
 import br.com.rarvelle.rarvelleapi.dto.UpdateVehicleStatusRequest;
 import br.com.rarvelle.rarvelleapi.service.VehicleService;
 import br.com.rarvelle.rarvelleapi.vehicle.Vehicle;
+import br.com.rarvelle.rarvelleapi.vehicle.VehicleCategory;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,13 @@ public class VehiclesController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         return ResponseEntity.ok(vehicle);
+    }
+
+    @GetMapping(params = "category")
+    public ResponseEntity<List<Vehicle>> listVehicleCategory(@RequestParam VehicleCategory category) {
+        var vehicles = vehicleService.listActiveVehiclesByCategory(category);
+
+        return ResponseEntity.ok(vehicles);
     }
 
     @PostMapping
