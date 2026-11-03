@@ -46,6 +46,13 @@ public class VehiclesController {
         return ResponseEntity.ok(vehicles);
     }
 
+    @GetMapping(params = "model")
+    public ResponseEntity<List<Vehicle>> listVehicleModel(@RequestParam String model) {
+        var vehicle = vehicleService.searchActiveVehiclesByModel(model);
+
+        return ResponseEntity.ok(vehicle);
+    }
+
     @PostMapping
     public ResponseEntity<Vehicle> registerVehicles(@RequestBody @Valid CreateVehicleRequest createVehicleRequest) {
         var vehicle = vehicleService.addVehicle(createVehicleRequest);

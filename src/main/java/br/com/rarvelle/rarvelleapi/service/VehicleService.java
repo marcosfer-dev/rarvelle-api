@@ -73,6 +73,18 @@ public class VehicleService {
 
     }
 
+    public List<Vehicle> searchActiveVehiclesByModel(String model) {
+        List<Vehicle> matchingVehicles = new ArrayList<>();
+
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.isActive() && vehicle.getModel().toLowerCase().contains(model.toLowerCase())) {
+                matchingVehicles.add(vehicle);
+            }
+        }
+
+        return matchingVehicles;
+    }
+
     public void deleteVehicleById(UUID id) {
         var vehicle = findVehicleById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
